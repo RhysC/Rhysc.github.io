@@ -77,12 +77,17 @@ $ git checkout gh-pages
     </div>
     <script src="javascripts/scale.fix.js"></script>
     <script>
-      if (posthog.isFeatureEnabled('testrhysc')) {
-          let theOnElement = document.getElementById("ffEnabled");
-          theOnElement.style.display = '';
-          let theOffElement = document.getElementById("ffDisabled");
-          theOffElement.style.display = 'none';
-      } 
+
+      posthog.onFeatureFlags(function() {
+          // feature flags are guaranteed to be available at this point
+           if (posthog.isFeatureEnabled('testrhysc')) {
+                let theOnElement = document.getElementById("ffEnabled");
+                theOnElement.style.display = '';
+                let theOffElement = document.getElementById("ffDisabled");
+                theOffElement.style.display = 'none';
+            } 
+      });
+     
     </script>
   </body>
 </html>
